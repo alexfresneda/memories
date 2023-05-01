@@ -14,7 +14,7 @@ import {
 
 export default function Sidebar() {
   return (
-    <div className="hidden sm:flex flex-col p-2 xl:items-start fixed h-full">
+    <div className="fixed hidden h-full flex-col p-2 sm:flex xl:ml-12 xl:items-start">
       {/* Logo */}
       <div
         className="hoverEffect p-0
@@ -23,7 +23,7 @@ export default function Sidebar() {
         <Image width="50" height="50" src="/logo.png"></Image>
       </div>
       {/* Menu */}
-      <div className="mt-4 mb-2.5 xl:items-start">
+      <div className="mb-2.5 mt-4 xl:items-start">
         <SidebarMenuItem text="Home" Icon={HomeIcon} active />
         <SidebarMenuItem text="Explore" Icon={HashtagIcon} />
         <SidebarMenuItem text="Notifications" Icon={BellIcon} />
@@ -34,22 +34,22 @@ export default function Sidebar() {
         <SidebarMenuItem text="More" Icon={EllipsisHorizontalCircleIcon} />
       </div>
       {/* Button */}
-      <button className="bg-blue-400 text-white rounded-full w-12 xl:w-56 h-12 font-bold shadow-md hover:brightness-95 text-lg ">
+      <button className="h-12 w-12 rounded-full bg-blue-400 text-lg font-bold text-white shadow-md hover:brightness-95 xl:w-56 ">
         <p className="hidden xl:inline">Tweet</p>
-        <PlusIcon className="h-5 inline xl:hidden" />
+        <PlusIcon className="inline h-5 xl:hidden" />
       </button>
       {/* Mini-Profile */}
-      <div className="hoverEffect text-gray-700 dark:text-gray-300 flex items-center justify-center xl:justify-start mt-auto">
+      <div className="hoverEffect mt-auto flex items-center justify-center text-gray-700 dark:text-gray-300 xl:justify-start">
         <img
           src="/logo.png"
           className="h-10 w-10 rounded-full xl:mr-2"
           alt="user image"
         />
-        <div className="leading-5 hidden xl:inline">
+        <div className="hidden leading-5 xl:inline">
           <h4 className="font-bold">Alex Fresneda</h4>
           <p className="text-gray-500 dark:text-gray-400">@alex</p>
         </div>
-        <EllipsisHorizontalIcon className="h-5 xl:ml-8 hidden xl:inline" />
+        <EllipsisHorizontalIcon className="hidden h-5 xl:ml-8 xl:inline" />
       </div>
     </div>
   );
