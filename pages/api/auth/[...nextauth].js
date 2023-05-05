@@ -12,7 +12,18 @@ export const authOptions = {
   ],
 
   pages: {
-    signin: "/auth/signin",
+    signIn: "/auth/signin",
+  },
+
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user.username = session.user.email.substring(
+        0,
+        session.user.email.lastIndexOf("@")
+      );
+      session.user.uid = token.sub;
+      return session;
+    },
   },
 };
 
