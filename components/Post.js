@@ -7,6 +7,7 @@ import {
   ShareIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
+import Moment from "react-moment";
 
 export default function Post({ post }) {
   return (
@@ -14,7 +15,7 @@ export default function Post({ post }) {
       {/* user image */}
       <img
         className="mr-4 h-11 w-11 rounded-full"
-        src={post.userImg}
+        src={post.data().userImg}
         alt="user-image"
       />
       {/* right side */}
@@ -24,13 +25,13 @@ export default function Post({ post }) {
           {/* post user info */}
           <div className="flex space-x-1 ">
             <h4 className="truncate text-[15px] font-bold hover:underline sm:text-[16px]">
-              {post.name}
+              {post.data().name}
             </h4>
             <span className="text-[15px] font-light text-gray-500 dark:text-gray-400 sm:text-[16px]">
-              @{post.username} ·
+              @{post.data().username} ·
             </span>
             <span className="text-[15px] font-light text-gray-500 hover:underline dark:text-gray-400 sm:text-[16px]">
-              {post.timestamp}
+              <Moment fromNow>{post?.timestamp?.toDate()}</Moment>
             </span>
           </div>
           {/* dot icon */}
@@ -38,10 +39,10 @@ export default function Post({ post }) {
         </div>
         {/* post text */}
         <p className="mb-2 text-[15px] text-gray-800 dark:text-gray-200 sm:text-[16px]">
-          {post.text}
+          {post.data().text}
         </p>
         {/* post image image */}
-        <img className="mr-2 rounded-2xl" src={post.img} />
+        <img className="mr-2 rounded-2xl" src={post.data().image} />
         {/* icons */}
         <div className="flex justify-between p-2 text-gray-500 dark:text-gray-400">
           <ChatBubbleOvalLeftEllipsisIcon className="hoverEffect h-9 w-9 p-2 transition duration-200 hover:bg-blue-50 hover:text-blue-400 dark:hover:bg-blue-950" />

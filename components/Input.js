@@ -86,7 +86,7 @@ export default function Input() {
                   className={`${
                     loading
                       ? "hidden"
-                      : "absolute h-8 cursor-pointer text-black opacity-30 transition duration-200 hover:opacity-40"
+                      : "absolute m-1 h-8 cursor-pointer text-black opacity-50 transition duration-200 hover:opacity-60"
                   }`}
                 />
                 <img
