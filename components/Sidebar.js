@@ -61,8 +61,10 @@ export default function Sidebar() {
               alt="user image"
             />
             <div className="hidden truncate leading-5 xl:inline">
-              <h4 className="truncate font-bold">{session.user.name}</h4>
-              <p className="truncate text-gray-500 dark:text-gray-400">
+              <h4 className="truncate text-sm font-bold">
+                {session.user.name}
+              </h4>
+              <p className="truncate text-sm text-gray-500 dark:text-gray-400">
                 @{session.user.username}
               </p>
             </div>
