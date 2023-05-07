@@ -1,4 +1,4 @@
-import { db } from "@/firebase";
+import { db, storage } from "@/firebase";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/20/solid";
 import {
   ChartBarIcon,
@@ -15,6 +15,7 @@ import {
   onSnapshot,
   setDoc,
 } from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
 import { signIn, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Moment from "react-moment";
@@ -51,6 +52,13 @@ export default function Post({ post }) {
     }
   }
 
+  async function deletePost() {
+    if (window.confirm("Are you sure you want to delete this post?")) {
+      deleteDoc(doc(db, "posts", post.id));
+      deleteObject(ref(storage, `posts/${post.id}/image`));
+    }
+  }
+
   return (
     <div className="flex cursor-pointer border-b border-gray-200 p-3 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950">
       {/* user image */}
@@ -60,18 +68,18 @@ export default function Post({ post }) {
         alt="user-image"
       />
       {/* right side */}
-      <div className="">
+      <div className="w-[100%]">
         {/* header */}
         <div className="flex items-center justify-between">
           {/* post user info */}
-          <div className="flex space-x-1 ">
+          <div className="flex space-x-1  ">
             <h4 className="truncate text-[15px] font-bold hover:underline sm:text-[16px]">
               {post.data().name}
             </h4>
-            <span className="text-[15px] font-light text-gray-500 dark:text-gray-400 sm:text-[16px]">
+            <span className=" truncate text-[15px] font-light text-gray-500 dark:text-gray-400 sm:text-[16px]">
               @{post.data().username} ·
             </span>
-            <span className="text-[15px] font-light text-gray-500 hover:underline dark:text-gray-400 sm:text-[16px]">
+            <span className=" text-[15px] font-light text-gray-500 hover:underline dark:text-gray-400 sm:text-[16px]">
               <Moment fromNow>{post?.data().timestamp?.toDate()}</Moment>
             </span>
           </div>
@@ -88,7 +96,10 @@ export default function Post({ post }) {
         <div className="flex justify-between p-2 text-gray-500 dark:text-gray-400">
           <ChatBubbleOvalLeftEllipsisIcon className="hoverEffect h-9 w-9 p-2 transition duration-200 hover:bg-blue-50 hover:text-blue-400 dark:hover:bg-blue-950" />
           {session?.user.uid === post?.data().id && (
-            <TrashIcon className="hoverEffect h-9 w-9 p-2 transition duration-200 hover:bg-red-50 hover:text-red-400 dark:hover:bg-red-950" />
+            <TrashIcon
+              onClick={deletePost}
+              className="hoverEffect h-9 w-9 p-2 transition duration-200 hover:bg-red-50 hover:text-red-400 dark:hover:bg-red-950"
+            />
           )}
           <div className="flex items-center">
             {hasLiked ? (
