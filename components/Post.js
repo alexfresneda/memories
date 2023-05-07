@@ -25,12 +25,13 @@ export default function Post({ post }) {
   const [likes, setLikes] = useState([]);
   const [hasLiked, setHasLiked] = useState(false);
 
-  useEffect(() => {
-    const unsubscribe = onSnapshot(
-      collection(db, "posts", post.id, "likes"),
-      (snapshot) => setLikes(snapshot.docs)
-    );
-  }, [db]);
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "posts", post.id, "likes"), (snapshot) =>
+        setLikes(snapshot.docs)
+      ),
+    [db]
+  );
 
   useEffect(() => {
     setHasLiked(
@@ -55,7 +56,10 @@ export default function Post({ post }) {
   async function deletePost() {
     if (window.confirm("Are you sure you want to delete this post?")) {
       deleteDoc(doc(db, "posts", post.id));
-      deleteObject(ref(storage, `posts/${post.id}/image`));
+
+      if (post.data().image) {
+        deleteObject(ref(storage, `posts/${post.id}/image`));
+      }
     }
   }
 
