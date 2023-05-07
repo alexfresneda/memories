@@ -64,7 +64,7 @@ export default function Post({ post }) {
   }
 
   return (
-    <div className="flex cursor-pointer border-b border-gray-200 p-3 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950">
+    <div className="flex cursor-pointer border-b border-gray-200 p-3 transition duration-500 ease-out hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950">
       {/* user image */}
       <img
         className="mr-4 h-11 w-11 rounded-full"
