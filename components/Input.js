@@ -62,18 +62,18 @@ export default function Input() {
   return (
     <>
       {session && (
-        <div className="flex space-x-3 border-b border-gray-200 p-3 dark:border-gray-800">
-          <img
-            onClick={signOut}
+        <div className="flex h-[80%] space-x-3">
+          {/* <img
+            // onClick={signOut}
             src={session.user.image}
             alt="user image"
             className="h-11 w-11 cursor-pointer rounded-full hover:brightness-95"
-          />
-          <div className="w-full divide-y divide-gray-200 dark:divide-gray-800">
-            <div className="">
+          /> */}
+          <div className="h-full w-full divide-y divide-gray-200 dark:divide-gray-800">
+            <div className="h-full">
               <textarea
-                className="min-h-[50px] w-full border-none text-lg tracking-wide focus:ring-0 dark:bg-black"
-                rows="2"
+                className="h-full min-h-[50px] w-full border-none p-1 text-lg tracking-wide focus:ring-0 dark:bg-black"
+                // rows="2"
                 placeholder="What's happening?"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
