@@ -15,9 +15,12 @@ import {
 import { useSession } from "next-auth/react";
 import { signIn } from "next-auth/react";
 import { signOut } from "next-auth/react";
+import { useRecoilState } from "recoil";
+import { modalState } from "@/atom/modalAtom";
 
 export default function Sidebar() {
   const { data: session } = useSession();
+  const [open, setOpen] = useRecoilState(modalState);
 
   return (
     <div className="fixed hidden h-full flex-col p-2 sm:flex xl:ml-12 xl:items-start">
@@ -48,7 +51,10 @@ export default function Sidebar() {
 
       {session ? (
         <>
-          <button className="h-12 w-12 rounded-full bg-blue-400 text-lg font-bold text-white shadow-md hover:brightness-95 xl:w-56 ">
+          <button
+            onClick={() => setOpen(!open)}
+            className="h-12 w-12 rounded-full bg-blue-400 text-lg font-bold text-white shadow-md hover:brightness-95 xl:w-56 "
+          >
             <p className="hidden xl:inline">Tweet</p>
             <PlusIcon className="inline h-5 xl:hidden" />
           </button>
