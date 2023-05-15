@@ -1,3 +1,4 @@
+import { modalState } from "@/atom/modalAtom";
 import { db, storage } from "@/firebase";
 import { XCircleIcon } from "@heroicons/react/20/solid";
 import { FaceSmileIcon, PhotoIcon } from "@heroicons/react/24/outline";
@@ -11,8 +12,10 @@ import {
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { useSession, signOut } from "next-auth/react";
 import { useRef, useState } from "react";
+import { useRecoilState } from "recoil";
 
 export default function Input() {
+  const [open, setOpen] = useRecoilState(modalState);
   const { data: session } = useSession();
   const [input, setInput] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -46,6 +49,7 @@ export default function Input() {
     setInput("");
     setSelectedFile(null);
     setLoading(false);
+    setOpen(false);
   };
 
   const addImageToPost = (e) => {

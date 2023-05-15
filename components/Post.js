@@ -19,15 +19,17 @@ import { deleteObject, ref } from "firebase/storage";
 import { signIn, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Moment from "react-moment";
+import { useRouter } from "next/router";
 
-export default function Post({ post }) {
+export default function Post({ post, id }) {
   const { data: session } = useSession();
   const [likes, setLikes] = useState([]);
   const [hasLiked, setHasLiked] = useState(false);
+  const router = useRouter();
 
   useEffect(
     () =>
-      onSnapshot(collection(db, "posts", post.id, "likes"), (snapshot) =>
+      onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
         setLikes(snapshot.docs)
       ),
     [db]
@@ -42,9 +44,9 @@ export default function Post({ post }) {
   async function likePost() {
     if (session) {
       if (hasLiked) {
-        await deleteDoc(doc(db, "posts", post.id, "likes", session?.user.uid));
+        await deleteDoc(doc(db, "posts", id, "likes", session?.user.uid));
       } else {
-        await setDoc(doc(db, "posts", post.id, "likes", session?.user.uid), {
+        await setDoc(doc(db, "posts", id, "likes", session?.user.uid), {
           username: session.user.username,
         });
       }
@@ -55,20 +57,24 @@ export default function Post({ post }) {
 
   async function deletePost() {
     if (window.confirm("Are you sure you want to delete this post?")) {
-      deleteDoc(doc(db, "posts", post.id));
+      deleteDoc(doc(db, "posts", id));
 
       if (post.data().image) {
-        deleteObject(ref(storage, `posts/${post.id}/image`));
+        deleteObject(ref(storage, `posts/${id}/image`));
       }
+      router.push("/");
     }
   }
 
   return (
-    <div className="flex cursor-pointer border-b border-gray-200 p-3 transition duration-500 ease-out hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950">
+    <div
+      onClick={() => router.push(`/posts/${id}`)}
+      className="flex cursor-pointer border-b border-gray-200 p-3 transition duration-500 ease-out hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950"
+    >
       {/* user image */}
       <img
         className="mr-4 h-11 w-11 rounded-full"
-        src={post.data().userImg}
+        src={post?.data()?.userImg}
         alt="user-image"
       />
       {/* right side */}
@@ -78,13 +84,13 @@ export default function Post({ post }) {
           {/* post user info */}
           <div className="flex space-x-1  ">
             <h4 className="truncate text-[15px] font-bold hover:underline sm:text-[16px]">
-              {post.data().name}
+              {post?.data()?.name}
             </h4>
             <span className=" truncate text-[15px] font-light text-gray-500 dark:text-gray-400 sm:text-[16px]">
-              @{post.data().username} ·
+              @{post?.data()?.username} ·
             </span>
             <span className=" text-[15px] font-light text-gray-500 hover:underline dark:text-gray-400 sm:text-[16px]">
-              <Moment fromNow>{post?.data().timestamp?.toDate()}</Moment>
+              <Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
             </span>
           </div>
           {/* dot icon */}
@@ -92,14 +98,14 @@ export default function Post({ post }) {
         </div>
         {/* post text */}
         <p className="mb-2 text-[15px] text-gray-800 dark:text-gray-200 sm:text-[16px]">
-          {post.data().text}
+          {post?.data()?.text}
         </p>
         {/* post image image */}
-        <img className="mr-2 rounded-2xl" src={post.data().image} />
+        <img className="mr-2 rounded-2xl" src={post?.data()?.image} />
         {/* icons */}
         <div className="flex justify-between p-2 text-gray-500 dark:text-gray-400">
           <ChatBubbleOvalLeftEllipsisIcon className="hoverEffect h-9 w-9 p-2 transition duration-200 hover:bg-blue-50 hover:text-blue-400 dark:hover:bg-blue-950" />
-          {session?.user.uid === post?.data().id && (
+          {session?.user.uid === post?.data()?.id && (
             <TrashIcon
               onClick={deletePost}
               className="hoverEffect h-9 w-9 p-2 transition duration-200 hover:bg-red-50 hover:text-red-400 dark:hover:bg-red-950"

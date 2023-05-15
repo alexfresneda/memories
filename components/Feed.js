@@ -22,24 +22,28 @@ export default function Feed() {
   return (
     <div className="max-w-xl flex-grow border-l border-r border-gray-200 dark:border-gray-800 sm:ml-[73px] xl:ml-[320px] xl:min-w-[576px]">
       <div className="sticky top-0 z-40 flex border-b border-gray-200 bg-white/70 px-3 py-2 backdrop-blur-md dark:border-gray-800 dark:bg-black/70">
-        <h2 className="cursor-pointer text-lg font-bold sm:text-xl">Home</h2>
+        <h2 className="flex cursor-pointer items-center justify-center text-lg font-bold sm:text-xl">
+          Home
+        </h2>
         <div className="hoverEffect ml-auto flex h-9 w-9 items-center justify-center px-0">
           <SparklesIcon className="h-5" />
         </div>
       </div>
       {/* <Input /> */}
       <AnimatePresence>
-        {posts.map((post) => (
-          <motion.div
-            key={post.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-          >
-            <Post key={post.id} post={post} />
-          </motion.div>
-        ))}
+        <div className="">
+          {posts.map((post) => (
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <Post key={post.id} id={post.id} post={post} />
+            </motion.div>
+          ))}
+        </div>
       </AnimatePresence>
     </div>
   );

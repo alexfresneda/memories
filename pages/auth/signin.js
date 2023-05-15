@@ -7,7 +7,7 @@ export default function signin({ providers }) {
       <div className="">
         {Object.values(providers).map((provider) => (
           <div className="flex flex-col items-center">
-            <h1 className="mb-8 text-2xl font-bold">Welcome to memories</h1>
+            <h1 className="mb-8 text-2xl font-bold">Welcome to lifebits</h1>
             <button
               onClick={() => signIn(provider.id, { callbackUrl: "/" })}
               className="rounded-full bg-black px-5 py-2 text-white hover:bg-opacity-90 dark:bg-white dark:text-black
