@@ -36,7 +36,7 @@ export default function Sidebar() {
         <SidebarMenuItem text="Home" Icon={HomeIcon} active />
         <SidebarMenuItem text="Explore" Icon={HashtagIcon} />
 
-        {session && (
+        {/* {session && (
           <>
             <SidebarMenuItem text="Notifications" Icon={BellIcon} />
             <SidebarMenuItem text="Messages" Icon={InboxIcon} />
@@ -45,7 +45,7 @@ export default function Sidebar() {
             <SidebarMenuItem text="Profile" Icon={UserIcon} />
             <SidebarMenuItem text="More" Icon={EllipsisHorizontalCircleIcon} />
           </>
-        )}
+        )} */}
       </div>
       {/* Button */}
 
@@ -53,20 +53,21 @@ export default function Sidebar() {
         <>
           <button
             onClick={() => setOpen(!open)}
-            className="h-12 w-12 rounded-full bg-blue-400 text-lg font-bold text-white shadow-md hover:brightness-95 xl:w-56 "
+            className="h-12 w-12 rounded-full bg-black text-lg font-bold text-white shadow-md hover:brightness-95 dark:bg-white  "
           >
-            <p className="hidden xl:inline">Tweet</p>
-            <PlusIcon className="inline h-5 xl:hidden" />
+            {/* <p className="hidden xl:inline">Tweet</p> */}
+            <PlusIcon className="inline h-8 text-white dark:text-black" />
           </button>
 
           {/* Mini-Profile */}
-          <div className="hoverEffect mt-auto flex max-w-[250px] items-center justify-center text-gray-700 dark:text-gray-300 xl:justify-start">
+          <div className="mt-auto">
             <img
+              onClick={signOut}
               src={session.user.image}
-              className="h-10 w-10 rounded-full xl:mr-2"
+              className="h-12 w-12 rounded-full"
               alt="user image"
             />
-            <div className="hidden truncate leading-5 xl:inline">
+            {/* <div className="hidden truncate leading-5 xl:inline">
               <h4 className="truncate text-sm font-bold">
                 {session.user.name}
               </h4>
@@ -77,7 +78,7 @@ export default function Sidebar() {
             <EllipsisHorizontalIcon
               onClick={signOut}
               className="hidden w-[32px] xl:ml-8 xl:inline"
-            />
+            /> */}
           </div>
         </>
       ) : (

@@ -24,10 +24,10 @@ export default function Home({ newsResults, randomUsersResults }) {
         <Feed />
 
         {/* Widgets */}
-        <Widgets
+        {/* <Widgets
           newsResults={newsResults.articles}
           randomUsersResults={randomUsersResults.results}
-        />
+        /> */}
         {/* Modal */}
         <InputModal />
       </main>

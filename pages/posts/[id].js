@@ -34,8 +34,8 @@ export default function PostPage({ newsResults, randomUsersResults }) {
         <Sidebar />
 
         {/* Feed */}
-        <div className="max-w-xl flex-grow border-l border-r border-gray-200 dark:border-gray-800 sm:ml-[73px] xl:ml-[320px] xl:min-w-[576px]">
-          <div className="sticky top-0 z-40 flex items-center space-x-2 border-b border-gray-200 bg-white/70 px-3 py-2 backdrop-blur-md dark:border-gray-800 dark:bg-black/70">
+        <div className="max-w-xl flex-grow  sm:ml-[73px] xl:ml-[320px] xl:min-w-[576px]">
+          <div className="sticky top-0 z-40 flex items-center space-x-2  bg-white/70 px-3 py-2 backdrop-blur-md  dark:bg-black/70">
             <div
               onClick={() => router.push("/")}
               className="hoverEffect flex h-9 w-9 items-center justify-center px-0"
@@ -50,10 +50,10 @@ export default function PostPage({ newsResults, randomUsersResults }) {
         </div>
 
         {/* Widgets */}
-        <Widgets
+        {/* <Widgets
           newsResults={newsResults.articles}
           randomUsersResults={randomUsersResults.results}
-        />
+        /> */}
         {/* Modal */}
         <InputModal />
       </main>

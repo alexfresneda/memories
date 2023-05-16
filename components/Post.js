@@ -69,7 +69,7 @@ export default function Post({ post, id }) {
   return (
     <div
       onClick={() => router.push(`/posts/${id}`)}
-      className="flex cursor-pointer border-b border-gray-200 p-3 transition duration-500 ease-out hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-950"
+      className="flex cursor-pointer  p-3 transition duration-500 ease-out"
     >
       {/* user image */}
       <img
