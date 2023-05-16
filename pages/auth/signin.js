@@ -6,7 +6,7 @@ export default function signin({ providers }) {
       <img className="mb-8 w-24" src="/logo.png" alt="memories logo" />
       <div className="">
         {Object.values(providers).map((provider) => (
-          <div className="flex flex-col items-center">
+          <div key={provider.name} className="flex flex-col items-center">
             <h1 className="mb-8 text-2xl font-bold">Welcome to lifebits</h1>
             <button
               onClick={() => signIn(provider.id, { callbackUrl: "/" })}
