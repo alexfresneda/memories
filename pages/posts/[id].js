@@ -42,7 +42,7 @@ export default function PostPage({ newsResults, randomUsersResults }) {
             >
               <ChevronLeftIcon className="h-8" />
             </div>
-            <h2 className="flex items-center justify-center font-bold sm:text-3xl">
+            <h2 className="flex items-center justify-center text-xl font-bold sm:text-3xl">
               Post
             </h2>
           </div>

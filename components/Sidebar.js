@@ -40,9 +40,9 @@ export default function Sidebar() {
       ) : (
         <button
           onClick={signIn}
-          className="my-4 h-12 w-12 rounded-full bg-black text-lg font-bold text-white shadow-md transition duration-500 ease-out hover:scale-105 dark:bg-white"
+          className="my-4 h-12 w-12 rounded-full bg-black text-lg font-bold text-white shadow-md transition duration-500 ease-out hover:scale-105 dark:bg-white dark:text-black"
         >
-          <UserIcon className="inline h-5 text-black" />
+          <UserIcon className="inline h-5" />
         </button>
       )}
 
