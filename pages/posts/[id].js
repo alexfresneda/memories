@@ -34,15 +34,15 @@ export default function PostPage({ newsResults, randomUsersResults }) {
         <Sidebar />
 
         {/* Feed */}
-        <div className="max-w-xl flex-grow  sm:ml-[73px] xl:ml-[320px] xl:min-w-[576px]">
-          <div className="sticky top-0 z-40 flex items-center space-x-2  bg-white/70 px-3 py-2 backdrop-blur-md  dark:bg-black/70">
+        <div className="max-w-2xl flex-grow  sm:ml-[73px] lg:mx-auto xl:min-w-[576px]">
+          <div className="sticky top-0 z-40 flex  bg-white/70 px-3 py-4 backdrop-blur-md dark:bg-black/70 sm:pb-6 sm:pt-7">
             <div
               onClick={() => router.push("/")}
-              className="hoverEffect flex h-9 w-9 items-center justify-center px-0"
+              className="hoverEffect mr-2 flex h-9 w-9 items-center justify-center px-0"
             >
-              <ChevronLeftIcon className="h-5" />
+              <ChevronLeftIcon className="h-8" />
             </div>
-            <h2 className="cursor-pointer text-lg font-bold sm:text-xl">
+            <h2 className="flex items-center justify-center font-bold sm:text-3xl">
               Post
             </h2>
           </div>

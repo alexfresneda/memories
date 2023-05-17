@@ -21,9 +21,9 @@ export default function Feed() {
   );
 
   return (
-    <div className="max-w-3xl flex-grow  sm:ml-[73px] xl:ml-[250px] xl:min-w-[576px]">
-      <div className="sticky top-0 z-40 flex  bg-white/70 px-3 pb-4 pt-8 backdrop-blur-md dark:bg-black/70">
-        <h2 className="flex cursor-pointer items-center justify-center text-lg font-bold sm:text-xl">
+    <div className="max-w-2xl flex-grow  sm:ml-[73px] lg:mx-auto xl:min-w-[576px]">
+      <div className="sticky top-0 z-40 flex  bg-white/70 px-3 py-4 backdrop-blur-md dark:bg-black/70 sm:pb-6 sm:pt-7">
+        <h2 className="flex items-center justify-center font-bold sm:text-3xl">
           Home
         </h2>
         {/* <div className="hoverEffect ml-auto flex h-9 w-9 items-center justify-center px-0">
@@ -32,7 +32,7 @@ export default function Feed() {
       </div>
       {/* <Input /> */}
       <AnimatePresence>
-        <div className="m-2 grid grid-cols-2 gap-2 md:grid-cols-3">
+        <div className="m-2 grid grid-cols-2 gap-2 sm:gap-5 md:grid-cols-3 md:gap-8">
           {posts.map((post) => (
             <motion.div
               key={post.id}

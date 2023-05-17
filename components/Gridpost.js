@@ -31,8 +31,8 @@ export default function Gridpost({ post, id }) {
     <div onClick={() => router.push(`/posts/${id}`)} className="p-1">
       {/* post image image */}
       <img
-        className="h-60 w-60 cursor-pointer rounded-3xl border border-gray-200 object-cover transition duration-500 ease-out hover:scale-105 dark:border-gray-800"
-        src={post?.data()?.image}
+        className="h-48 w-48 cursor-pointer rounded-5xl border border-gray-200 object-cover transition duration-500 ease-out hover:scale-105 dark:border-gray-800"
+        src={post?.data()?.image ? post?.data()?.image : "/logo.png"}
       />
     </div>
   );

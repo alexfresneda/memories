@@ -1,13 +1,12 @@
 import Image from "next/image";
 import SidebarMenuItem from "./SidebarMenuItem";
-import { HomeIcon, PlusIcon } from "@heroicons/react/20/solid";
+import { HomeIcon, UserIcon, PlusIcon } from "@heroicons/react/20/solid";
 import {
   BellIcon,
   BookmarkIcon,
   ClipboardIcon,
   HashtagIcon,
   InboxIcon,
-  UserIcon,
   EllipsisHorizontalCircleIcon,
   EllipsisHorizontalIcon,
   ArrowRightOnRectangleIcon,
@@ -24,15 +23,28 @@ export default function Sidebar() {
   const [open, setOpen] = useRecoilState(modalState);
 
   return (
-    <div className="fixed hidden h-full flex-col p-2 sm:flex xl:ml-40 xl:items-start">
-      {/* Logo */}
-      {/* <div
-        className="hoverEffect p-0
-      "
-      >
-        <Image width="50" height="50" src="/logo.png"></Image>
-      </div> */}
-      {/* Menu */}
+    <div className="fixed hidden h-full flex-col p-2 sm:flex lg:ml-16 xl:ml-48 xl:items-start">
+      {session ? (
+        <>
+          {/* Mini-Profile */}
+          <div className="my-4 cursor-pointer transition duration-500 ease-out hover:scale-105">
+            <img
+              onClick={signOut}
+              src={session.user.image}
+              className="h-12 w-12 rounded-full"
+              alt="user image"
+            />
+          </div>
+        </>
+      ) : (
+        <button
+          onClick={signIn}
+          className="my-4 h-12 w-12 rounded-full bg-black text-lg font-bold text-white shadow-md transition duration-500 ease-out hover:scale-105 dark:bg-white"
+        >
+          <UserIcon className="inline h-5 text-black" />
+        </button>
+      )}
+
       <div className="my-2 xl:items-start">
         <SidebarMenuItem text="Home" Icon={HomeIcon} active />
         <SidebarMenuItem text="Explore" Icon={MagnifyingGlassIcon} />
@@ -50,46 +62,15 @@ export default function Sidebar() {
       </div>
       {/* Button */}
 
-      {session ? (
+      {session && (
         <>
           <button
             onClick={() => setOpen(!open)}
             className="h-12 w-12 rounded-full bg-black text-lg font-bold text-white shadow-md transition duration-500 ease-out hover:scale-105 dark:bg-white  "
           >
-            {/* <p className="hidden xl:inline">Tweet</p> */}
             <PlusIcon className="inline h-8 text-white dark:text-black" />
           </button>
-
-          {/* Mini-Profile */}
-          <div className="mb-4 mt-auto cursor-pointer transition duration-500 ease-out hover:scale-105">
-            <img
-              onClick={signOut}
-              src={session.user.image}
-              className="h-12 w-12 rounded-full"
-              alt="user image"
-            />
-            {/* <div className="hidden truncate leading-5 xl:inline">
-              <h4 className="truncate text-sm font-bold">
-                {session.user.name}
-              </h4>
-              <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                @{session.user.username}
-              </p>
-            </div>
-            <EllipsisHorizontalIcon
-              onClick={signOut}
-              className="hidden w-[32px] xl:ml-8 xl:inline"
-            /> */}
-          </div>
         </>
-      ) : (
-        <button
-          onClick={signIn}
-          className="h-12 w-12 rounded-full bg-blue-400 text-lg font-bold text-white shadow-md hover:brightness-95 xl:w-56"
-        >
-          <p className="hidden xl:inline">Sign in</p>
-          <ArrowRightOnRectangleIcon className="inline h-5 xl:hidden" />
-        </button>
       )}
     </div>
   );
