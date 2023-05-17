@@ -1,6 +1,6 @@
 import { modalState } from "@/atom/modalAtom";
 import { db, storage } from "@/firebase";
-import { XCircleIcon } from "@heroicons/react/20/solid";
+import { ViewfinderCircleIcon, XCircleIcon } from "@heroicons/react/20/solid";
 import { FaceSmileIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import {
   addDoc,
@@ -66,17 +66,17 @@ export default function Input() {
   return (
     <>
       {session && (
-        <div className="flex h-[80%] space-x-3">
+        <div className="flex-none grow order-1 space-x-3">
           {/* <img
             // onClick={signOut}
             src={session.user.image}
             alt="user image"
             className="h-11 w-11 cursor-pointer rounded-full hover:brightness-95"
           /> */}
-          <div className="h-full w-full divide-y divide-gray-200 dark:divide-gray-800">
-            <div className="h-full">
+          {/* <div className="h-full w-full divide-y divide-gray-200 dark:divide-gray-800"> */}
+            <div className="flex-none grow order-0">
               <textarea
-                className="h-full min-h-[50px] w-full border-none p-1 text-lg tracking-wide focus:ring-0 dark:bg-black"
+                className=" min-h-[50px] w-full border-none bg-stone-200 p-1 text-lg tracking-wide focus:ring-0 dark:bg-stone-900"
                 // rows="2"
                 placeholder="What's happening?"
                 value={input}
@@ -103,7 +103,7 @@ export default function Input() {
                 />
               </div>
             )}
-            <div className="flex items-center justify-between pt-2.5">
+            <div className="flex items-center justify-end border-none pt-2.5">
               {!loading && (
                 <>
                   <div className="flex">
@@ -111,7 +111,7 @@ export default function Input() {
                       className=""
                       onClick={() => filePickerRef.current.click()}
                     >
-                      <PhotoIcon className="hoverEffect h-10 w-10 p-2 text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950" />
+                      <ViewfinderCircleIcon className="hoverEffect h-12 w-12 p-2 text-stone-700 hover:bg-stone-300 dark:text-stone-300 dark:hover:bg-stone-800" />
                       <input
                         type="file"
                         hidden
@@ -120,19 +120,19 @@ export default function Input() {
                       />
                     </div>
 
-                    <FaceSmileIcon className="hoverEffect h-10 w-10 p-2 text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950" />
+                    {/* <FaceSmileIcon className="hoverEffect h-10 w-10 p-2 text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950" /> */}
                   </div>
                   <button
                     onClick={sendPost}
                     disabled={!input.trim()}
-                    className="rounded-full bg-blue-400 px-4 py-1.5 font-bold text-white shadow-md hover:brightness-95 disabled:opacity-50"
+                    className="ml-4 rounded-full bg-black px-6 py-2 text-xl font-bold text-white shadow-md transition duration-500 ease-out hover:scale-105 disabled:hidden dark:bg-white dark:text-black"
                   >
-                    Tweet
+                    Save
                   </button>
                 </>
               )}
             </div>
-          </div>
+          {/* </div> */}
         </div>
       )}
     </>

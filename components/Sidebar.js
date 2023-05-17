@@ -11,6 +11,7 @@ import {
   EllipsisHorizontalCircleIcon,
   EllipsisHorizontalIcon,
   ArrowRightOnRectangleIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react";
 import { signIn } from "next-auth/react";
@@ -23,18 +24,18 @@ export default function Sidebar() {
   const [open, setOpen] = useRecoilState(modalState);
 
   return (
-    <div className="fixed hidden h-full flex-col p-2 sm:flex xl:ml-12 xl:items-start">
+    <div className="fixed hidden h-full flex-col p-2 sm:flex xl:ml-40 xl:items-start">
       {/* Logo */}
-      <div
+      {/* <div
         className="hoverEffect p-0
       "
       >
         <Image width="50" height="50" src="/logo.png"></Image>
-      </div>
+      </div> */}
       {/* Menu */}
-      <div className="mb-2.5 mt-4 xl:items-start">
+      <div className="my-2 xl:items-start">
         <SidebarMenuItem text="Home" Icon={HomeIcon} active />
-        <SidebarMenuItem text="Explore" Icon={HashtagIcon} />
+        <SidebarMenuItem text="Explore" Icon={MagnifyingGlassIcon} />
 
         {/* {session && (
           <>
@@ -53,14 +54,14 @@ export default function Sidebar() {
         <>
           <button
             onClick={() => setOpen(!open)}
-            className="h-12 w-12 rounded-full bg-black text-lg font-bold text-white shadow-md hover:brightness-95 dark:bg-white  "
+            className="h-12 w-12 rounded-full bg-black text-lg font-bold text-white shadow-md transition duration-500 ease-out hover:scale-105 dark:bg-white  "
           >
             {/* <p className="hidden xl:inline">Tweet</p> */}
             <PlusIcon className="inline h-8 text-white dark:text-black" />
           </button>
 
           {/* Mini-Profile */}
-          <div className="mt-auto">
+          <div className="mb-4 mt-auto cursor-pointer transition duration-500 ease-out hover:scale-105">
             <img
               onClick={signOut}
               src={session.user.image}

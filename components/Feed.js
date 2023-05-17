@@ -22,17 +22,17 @@ export default function Feed() {
 
   return (
     <div className="max-w-3xl flex-grow  sm:ml-[73px] xl:ml-[250px] xl:min-w-[576px]">
-      <div className="sticky top-0 z-40 flex  bg-white/70 px-3 py-2 backdrop-blur-md dark:bg-black/70">
+      <div className="sticky top-0 z-40 flex  bg-white/70 px-3 pb-4 pt-8 backdrop-blur-md dark:bg-black/70">
         <h2 className="flex cursor-pointer items-center justify-center text-lg font-bold sm:text-xl">
           Home
         </h2>
-        <div className="hoverEffect ml-auto flex h-9 w-9 items-center justify-center px-0">
+        {/* <div className="hoverEffect ml-auto flex h-9 w-9 items-center justify-center px-0">
           <SparklesIcon className="h-5" />
-        </div>
+        </div> */}
       </div>
       {/* <Input /> */}
       <AnimatePresence>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="m-2 grid grid-cols-2 gap-2 md:grid-cols-3">
           {posts.map((post) => (
             <motion.div
               key={post.id}

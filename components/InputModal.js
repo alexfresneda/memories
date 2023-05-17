@@ -12,10 +12,10 @@ export default function InputModal() {
         <Modal
           isOpen={open}
           onRequestClose={() => setOpen(false)}
-          className="fixed bottom-0 top-auto z-50 h-[95%] w-[100%] max-w-3xl rounded-b-none rounded-t-3xl border border-gray-200 bg-white shadow-xl dark:border-gray-800 dark:bg-black sm:left-[50%] sm:top-[50%] sm:h-[60%] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-3xl"
+          className="fixed bottom-0 top-auto z-50 h-[95%] w-[100%] max-w-3xl rounded-b-none rounded-t-3xl  bg-stone-200 shadow-xl dark:bg-stone-900 sm:left-[50%] sm:top-[50%] sm:h-[60%] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-3xl"
           overlayClassName="Overlay"
         >
-          <div className="h-full p-4">
+          <div className="h-full flex-col items-start p-4">
             <div className="pb-4">
               <div
                 onClick={() => setOpen(false)}
