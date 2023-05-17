@@ -11,6 +11,7 @@ import {
   EllipsisHorizontalIcon,
   ArrowRightOnRectangleIcon,
   MagnifyingGlassIcon,
+  HeartIcon,
 } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react";
 import { signIn } from "next-auth/react";
@@ -47,18 +48,18 @@ export default function Sidebar() {
 
       <div className="my-2 xl:items-start">
         <SidebarMenuItem text="Home" Icon={HomeIcon} active />
-        <SidebarMenuItem text="Explore" Icon={MagnifyingGlassIcon} />
+        <SidebarMenuItem text="Search" Icon={MagnifyingGlassIcon} />
 
-        {/* {session && (
+        {session && (
           <>
-            <SidebarMenuItem text="Notifications" Icon={BellIcon} />
-            <SidebarMenuItem text="Messages" Icon={InboxIcon} />
+            <SidebarMenuItem text="Liked" Icon={HeartIcon} />
+            {/* <SidebarMenuItem text="Messages" Icon={InboxIcon} />
             <SidebarMenuItem text="Bookmark" Icon={BookmarkIcon} />
             <SidebarMenuItem text="Lists" Icon={ClipboardIcon} />
             <SidebarMenuItem text="Profile" Icon={UserIcon} />
-            <SidebarMenuItem text="More" Icon={EllipsisHorizontalCircleIcon} />
+            <SidebarMenuItem text="More" Icon={EllipsisHorizontalCircleIcon} /> */}
           </>
-        )} */}
+        )}
       </div>
       {/* Button */}
 
