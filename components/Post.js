@@ -17,9 +17,10 @@ import {
 } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import { signIn, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Moment from "react-moment";
 import { useRouter } from "next/router";
+import "react-quill/dist/quill.snow.css";
 
 export default function Post({ post, id }) {
   const { data: session } = useSession();
@@ -97,9 +98,13 @@ export default function Post({ post, id }) {
           <EllipsisHorizontalIcon className="hoverEffect h-10 w-10 p-2 transition duration-200 hover:bg-blue-50 hover:text-blue-400 dark:hover:bg-blue-950" />
         </div>
         {/* post text */}
-        <p className="mb-2 text-[15px] text-gray-800 dark:text-gray-200 sm:text-[16px]">
+        {/* <p className="mb-2 text-[15px] text-gray-800 dark:text-gray-200 sm:text-[16px]">
           {post?.data()?.text}
-        </p>
+        </p> */}
+        <div
+          className="prose prose-lg"
+          dangerouslySetInnerHTML={{ __html: post?.data()?.text }}
+        />
         {/* post image image */}
         <img className="mr-2 rounded-2xl" src={post?.data()?.image} />
         {/* icons */}
