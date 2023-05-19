@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import Feed from "@/components/Feed";
 import Widgets from "@/components/Widgets";
 import InputModal from "@/components/InputModal";
+import TabBar from "@/components/TabBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,12 +17,13 @@ export default function Home({ newsResults, randomUsersResults }) {
         <link rel="icon" href="/favicon.icon" />
       </Head>
 
-      <main className="mx-auto flex min-h-screen max-w-7xl">
+      <main className="mx-auto flex-col sm:flex min-h-screen max-w-7xl">
         {/* Sidebar */}
         <Sidebar />
 
         {/* Feed */}
         <Feed />
+        <TabBar />
 
         {/* Widgets */}
         {/* <Widgets
