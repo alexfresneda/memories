@@ -80,7 +80,7 @@ export default function Input() {
         <div className="flex w-full grow flex-col space-x-3">
           {/* react quill goes here */}
           <ReactQuill
-            className="prose prose-lg grow border-none"
+            className="prose prose-lg grow border-none dark:prose-invert prose-h1:leading-loose prose-h2:leading-loose prose-p:text-lg prose-ol:text-lg prose-ul:text-lg prose-li:text-lg"
             theme="bubble"
             value={value}
             onChange={setValue}

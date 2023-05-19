@@ -102,7 +102,7 @@ export default function Post({ post, id }) {
           {post?.data()?.text}
         </p> */}
         <div
-          className="prose prose-lg"
+          className="prose prose-lg dark:prose-invert"
           dangerouslySetInnerHTML={{ __html: post?.data()?.text }}
         />
         {/* post image image */}
