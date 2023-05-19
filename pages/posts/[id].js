@@ -4,7 +4,11 @@ import Sidebar from "@/../components/Sidebar";
 import Widgets from "@/../components/Widgets";
 import Post from "@/../components/Post";
 import InputModal from "@/../components/InputModal";
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronLeftIcon,
+  HeartIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import { useRouter, Router } from "next/router";
 import { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -35,17 +39,23 @@ export default function PostPage({ newsResults, randomUsersResults }) {
 
         {/* Feed */}
         <div className="max-w-2xl flex-grow  sm:ml-[73px] lg:mx-auto xl:min-w-[576px]">
-          <div className="sticky top-0 z-40 flex  bg-white/70 px-3 py-4 backdrop-blur-md dark:bg-black/70 sm:pb-6 sm:pt-7">
+          <div className="sticky top-0 z-40 flex  bg-white/70 px-2 py-2 backdrop-blur-md dark:bg-black/70 sm:pb-5 sm:pt-7">
             <div
               onClick={() => router.push("/")}
-              className="hoverEffect mr-2 flex h-9 w-9 items-center justify-center px-0"
+              className="hoverEffect mr-2 flex h-10 w-10 items-center justify-center px-0"
             >
-              <ChevronLeftIcon className="h-8" />
+              <XMarkIcon className="h-8" />
             </div>
-            <h2 className="flex items-center justify-center text-xl font-bold sm:text-3xl">
-              Post
-            </h2>
+            {/* <div className="ml-auto flex h-8 w-8 items-center justify-center px-0">
+              <button
+                // onClick={signIn}
+                className=" text-black dark:text-white"
+              >
+                <HeartIcon className="h-8" />
+              </button>
+            </div> */}
           </div>
+
           <Post id={id} post={post} />
         </div>
 
