@@ -125,10 +125,10 @@ export default function Input() {
           <div className="ml-0 flex items-center justify-between border-none pt-2.5">
             {!loading && (
               <>
-                <div className="relative flex w-80 items-center rounded-full p-3 text-stone-500">
-                  <MusicalNoteIcon className="z-50 h-5 " />
+                <div className="relative flex w-80 items-center rounded-full p-3 ">
+                  <MusicalNoteIcon className="z-50 h-5 text-stone-500" />
                   <input
-                    className="absolute inset-0 rounded-full border-none bg-stone-200 pl-11 text-gray-800 placeholder-stone-500 hover:bg-stone-300 focus:bg-stone-300 dark:bg-stone-700 "
+                    className="absolute inset-0 rounded-full border-none  bg-stone-300 pl-11 text-stone-800 placeholder-stone-500 dark:bg-stone-800  dark:text-stone-200 "
                     type="text"
                     placeholder="Paste song link"
                     value={link}
