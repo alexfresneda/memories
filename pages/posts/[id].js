@@ -38,7 +38,7 @@ export default function PostPage({ newsResults, randomUsersResults }) {
         <Sidebar />
 
         {/* Feed */}
-        <div className="max-w-xl flex-grow sm:ml-[73px] md:ml-[300px] xl:min-w-[576px]">
+        <div className="max-w-xl flex-grow md:ml-[73px] lg:ml-[180px] xl:ml-[300px] xl:min-w-[576px]">
           <div className="sticky top-0 z-40 flex  bg-white/70 px-2 py-2 backdrop-blur-md dark:bg-black/70 sm:pb-5 sm:pt-7">
             <div
               onClick={() => router.push("/")}

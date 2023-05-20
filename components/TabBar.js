@@ -24,7 +24,7 @@ export default function TabBar() {
   const [open, setOpen] = useRecoilState(modalState);
 
   return (
-    <div className="fixed bottom-2 flex  w-full sm:hidden">
+    <div className="fixed bottom-2 flex  w-full md:hidden">
       {session && (
         <>
           <button

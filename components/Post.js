@@ -85,16 +85,18 @@ export default function Post({ post, id }) {
           <Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
         </span>
       </div>
-      <iframe
-        className=" sticky top-16 my-4 rounded-xl lg:hidden"
-        src={post?.data()?.link}
-        width="100%"
-        height="80"
-        frameBorder="0"
-        allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy"
-      ></iframe>
+      {post?.data()?.link && (
+        <iframe
+          className=" sticky top-16 my-4 rounded-xl lg:hidden"
+          src={post?.data()?.link}
+          width="100%"
+          height="80"
+          frameBorder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+      )}
 
       {/* post image image */}
       <img className="my-4 rounded-2xl" src={post?.data()?.image} />
