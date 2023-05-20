@@ -25,7 +25,7 @@ export default function Feed() {
   );
 
   return (
-    <div className="max-w-2xl flex-grow  sm:ml-[73px] lg:mx-auto xl:min-w-[576px]">
+    <div className="max-w-2xl flex-grow  sm:ml-[73px] md:ml-[300px] xl:min-w-[576px]">
       <div className="sticky top-0 z-40 flex  bg-white/70 px-3 py-3 backdrop-blur-md dark:bg-black/70 sm:pb-6 sm:pt-7">
         <h2 className="flex items-center justify-center text-xl font-bold sm:text-3xl">
           Home

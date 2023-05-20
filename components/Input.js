@@ -1,6 +1,10 @@
 import { modalState } from "@/atom/modalAtom";
 import { db, storage } from "@/firebase";
-import { ViewfinderCircleIcon, XCircleIcon } from "@heroicons/react/20/solid";
+import {
+  MusicalNoteIcon,
+  ViewfinderCircleIcon,
+  XCircleIcon,
+} from "@heroicons/react/20/solid";
 import { FaceSmileIcon, PhotoIcon } from "@heroicons/react/24/outline";
 import {
   addDoc,
@@ -23,13 +27,14 @@ export default function Input() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const filePickerRef = useRef(null);
+  const [link, setLink] = useState("");
 
   //react-quill
   const ReactQuill = useMemo(
     () => dynamic(() => import("react-quill"), { ssr: false }),
     []
   );
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
 
   const sendPost = async () => {
     if (loading) return;
@@ -37,8 +42,11 @@ export default function Input() {
 
     const docRef = await addDoc(collection(db, "posts"), {
       id: session.user.uid,
-      // text: input,
-      text: value,
+      text: input,
+      link: link.replace(
+        "https://open.spotify.com/",
+        "https://open.spotify.com/embed/"
+      ),
       userImg: session.user.image,
       timestamp: serverTimestamp(),
       name: session.user.name,
@@ -56,8 +64,7 @@ export default function Input() {
       });
     }
 
-    // setInput("");
-    setValue("");
+    setInput("");
     setSelectedFile(null);
     setLoading(false);
     setOpen(false);
@@ -82,8 +89,8 @@ export default function Input() {
           <ReactQuill
             className="prose prose-lg grow border-none dark:prose-invert prose-h1:leading-loose prose-h2:leading-loose prose-p:text-lg prose-ol:text-lg prose-ul:text-lg prose-li:text-lg"
             theme="bubble"
-            value={value}
-            onChange={setValue}
+            value={input}
+            onChange={setInput}
           />
 
           {/* <div className="order-0 flex-none grow">
@@ -115,32 +122,44 @@ export default function Input() {
               />
             </div>
           )}
-          <div className="flex flex-none items-center justify-end border-none pt-2.5">
+          <div className="ml-0 flex items-center justify-between border-none pt-2.5">
             {!loading && (
               <>
-                <div className="flex">
-                  <div
-                    className=""
-                    onClick={() => filePickerRef.current.click()}
-                  >
-                    <ViewfinderCircleIcon className="hoverEffect h-12 w-12 p-2 text-stone-700 hover:bg-stone-300 dark:text-stone-300 dark:hover:bg-stone-800" />
-                    <input
-                      type="file"
-                      hidden
-                      ref={filePickerRef}
-                      onChange={addImageToPost}
-                    />
-                  </div>
-
-                  {/* <FaceSmileIcon className="hoverEffect h-10 w-10 p-2 text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950" /> */}
+                <div className="relative flex w-80 items-center rounded-full p-3 text-stone-500">
+                  <MusicalNoteIcon className="z-50 h-5 " />
+                  <input
+                    className="absolute inset-0 rounded-full border-none bg-stone-200 pl-11 text-gray-800 placeholder-stone-500 hover:bg-stone-300 focus:bg-stone-300 dark:bg-stone-700 "
+                    type="text"
+                    placeholder="Paste song link"
+                    value={link}
+                    onChange={(e) => setLink(e.target.value)}
+                  />
                 </div>
-                <button
-                  onClick={sendPost}
-                  disabled={!value.trim()}
-                  className="ml-4 rounded-full bg-black px-6 py-2 text-xl font-bold text-white shadow-md transition duration-500 ease-out hover:scale-105 disabled:hidden dark:bg-white dark:text-black"
-                >
-                  Save
-                </button>
+                <div className="flex flex-none items-center justify-end">
+                  <div className="flex">
+                    <div
+                      className=""
+                      onClick={() => filePickerRef.current.click()}
+                    >
+                      <ViewfinderCircleIcon className="hoverEffect h-12 w-12 p-2 text-stone-700 hover:bg-stone-300 dark:text-stone-300 dark:hover:bg-stone-800" />
+                      <input
+                        type="file"
+                        hidden
+                        ref={filePickerRef}
+                        onChange={addImageToPost}
+                      />
+                    </div>
+
+                    {/* <FaceSmileIcon className="hoverEffect h-10 w-10 p-2 text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950" /> */}
+                  </div>
+                  <button
+                    onClick={sendPost}
+                    disabled={!input.trim()}
+                    className="ml-4 rounded-full bg-black px-6 py-2 text-xl font-bold text-white shadow-md transition duration-500 ease-out hover:scale-105 disabled:hidden dark:bg-white dark:text-black"
+                  >
+                    Save
+                  </button>
+                </div>
               </>
             )}
           </div>

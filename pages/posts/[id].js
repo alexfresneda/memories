@@ -38,7 +38,7 @@ export default function PostPage({ newsResults, randomUsersResults }) {
         <Sidebar />
 
         {/* Feed */}
-        <div className="max-w-2xl flex-grow  sm:ml-[73px] lg:mx-auto xl:min-w-[576px]">
+        <div className="max-w-xl flex-grow sm:ml-[73px] md:ml-[300px] xl:min-w-[576px]">
           <div className="sticky top-0 z-40 flex  bg-white/70 px-2 py-2 backdrop-blur-md dark:bg-black/70 sm:pb-5 sm:pt-7">
             <div
               onClick={() => router.push("/")}
@@ -60,10 +60,8 @@ export default function PostPage({ newsResults, randomUsersResults }) {
         </div>
 
         {/* Widgets */}
-        {/* <Widgets
-          newsResults={newsResults.articles}
-          randomUsersResults={randomUsersResults.results}
-        /> */}
+        {post?.data()?.link && <Widgets mediaLink={post?.data()?.link} />}
+
         {/* Modal */}
         <InputModal />
       </main>

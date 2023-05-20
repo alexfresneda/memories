@@ -24,7 +24,7 @@ export default function Sidebar() {
   const [open, setOpen] = useRecoilState(modalState);
 
   return (
-    <div className="fixed hidden h-full flex-col p-2 sm:flex lg:ml-16 xl:ml-48 xl:items-start">
+    <div className="fixed hidden h-full flex-col p-2 sm:flex lg:ml-48 xl:items-start">
       {session ? (
         <>
           {/* Mini-Profile */}

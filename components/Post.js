@@ -68,62 +68,58 @@ export default function Post({ post, id }) {
   }
 
   return (
-    <div
-      onClick={() => router.push(`/posts/${id}`)}
-      className="flex cursor-pointer  p-3 transition duration-500 ease-out"
-    >
-      {/* right side */}
-      <div className="w-[100%]">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
-            {/* user image */}
-            <img
-              className="mr-4 h-8 w-8 rounded-full"
-              src={post?.data()?.userImg}
-              alt="user-image"
-            />
-            <h4 className="truncate text-[15px] font-bold hover:underline sm:text-[16px]">
-              {post?.data()?.name}
-            </h4>
-          </div>
-          <span className=" text-[15px] font-light text-gray-500 hover:underline dark:text-gray-400 sm:text-[16px]">
-            <Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
-          </span>
+    <div className="w-[100%] p-3">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          {/* user image */}
+          <img
+            className="mr-4 h-8 w-8 rounded-full"
+            src={post?.data()?.userImg}
+            alt="user-image"
+          />
+          <h4 className="truncate text-[15px] font-bold hover:underline sm:text-[16px]">
+            {post?.data()?.name}
+          </h4>
         </div>
-        {/* post image image */}
-        <img className="my-8 rounded-2xl" src={post?.data()?.image} />
-        <div
-          className="prose prose-lg dark:prose-invert"
-          dangerouslySetInnerHTML={{ __html: post?.data()?.text }}
-        />
+        <span className=" text-[15px] font-light text-gray-500 hover:underline dark:text-gray-400 sm:text-[16px]">
+          <Moment fromNow>{post?.data()?.timestamp?.toDate()}</Moment>
+        </span>
+      </div>
 
-        {/* icons */}
-        <div className="mt-8 flex justify-between text-gray-500 dark:text-gray-400">
-          <div className="flex items-center">
-            {hasLiked ? (
-              <HeartIconSolid
-                onClick={likePost}
-                className="hoverEffect h-12 w-12 p-2 text-red-400 transition duration-200 hover:bg-red-50 dark:hover:bg-red-950"
-              />
-            ) : (
-              <HeartIcon
-                onClick={likePost}
-                className="hoverEffect h-12 w-12 p-2 transition duration-200 hover:bg-red-50 hover:text-red-400 dark:hover:bg-red-950"
-              />
-            )}
-            {likes.length > 0 && (
-              <span className={`${hasLiked && "text-red-600"} text-sm`}>
-                {likes.length}
-              </span>
-            )}
-          </div>
-          {session?.user.uid === post?.data()?.id && (
-            <TrashIcon
-              onClick={deletePost}
+      {/* post image image */}
+      <img className="my-4 rounded-2xl" src={post?.data()?.image} />
+      {/* post text */}
+      <div
+        className="prose prose-lg dark:prose-invert"
+        dangerouslySetInnerHTML={{ __html: post?.data()?.text }}
+      />
+
+      {/* icons */}
+      <div className="mt-8 flex justify-between text-gray-500 dark:text-gray-400">
+        <div className="flex items-center">
+          {hasLiked ? (
+            <HeartIconSolid
+              onClick={likePost}
+              className="hoverEffect h-12 w-12 p-2 text-red-400 transition duration-200 hover:bg-red-50 dark:hover:bg-red-950"
+            />
+          ) : (
+            <HeartIcon
+              onClick={likePost}
               className="hoverEffect h-12 w-12 p-2 transition duration-200 hover:bg-red-50 hover:text-red-400 dark:hover:bg-red-950"
             />
           )}
+          {likes.length > 0 && (
+            <span className={`${hasLiked && "text-red-600"} text-sm`}>
+              {likes.length}
+            </span>
+          )}
         </div>
+        {session?.user.uid === post?.data()?.id && (
+          <TrashIcon
+            onClick={deletePost}
+            className="hoverEffect h-12 w-12 p-2 transition duration-200 hover:bg-red-50 hover:text-red-400 dark:hover:bg-red-950"
+          />
+        )}
       </div>
     </div>
   );
